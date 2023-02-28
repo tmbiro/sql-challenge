@@ -21,7 +21,14 @@ ORDER BY emp_no;
 
 -- List the first name, last name, and hire date for the employees who were hired in 1986.
 
-
+SELECT employee.first_name, 
+	employee.last_name,
+	employee.hire_date
+FROM employees as employee
+WHERE
+	hire_date > CAST('1985-12-31' as Date)
+	AND hire_date < CAST('1987-01-01' as Date)
+ORDER BY emp_no;
 
 -- List the manager of each department along with their department number, department name, employee number, last name, and first name.
 
