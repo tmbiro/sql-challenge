@@ -60,14 +60,42 @@ ORDER BY dept_no, emp_no;
 
 -- List first name, last name, and sex of each employee whose first name is Hercules and whose last name begins with the letter B.
 
-
+SELECT employee.first_name, 
+	employee.last_name,
+	employee.sex
+FROM employees as employee
+WHERE
+	first_name = 'Hercules'
+	AND LEFT(last_name, 1) = 'B'
+ORDER BY last_name;
 
 -- List each employee in the Sales department, including their employee number, last name, and first name.
 
-
+SELECT department.dept_name,
+	designation.emp_no,  
+	employee.last_name, 
+	employee.first_name
+FROM departments as department
+INNER JOIN dept_emp as designation ON
+department.dept_no = designation.dept_no
+INNER JOIN employees as employee ON
+designation.emp_no = employee.emp_no
+WHERE
+	dept_name = 'Sales'
+ORDER BY emp_no;
 
 -- List each employee in the Sales and Development departments, including their employee number, last name, first name, and department name.
 
-
+SELECT department.dept_name,
+	designation.emp_no,  
+	employee.last_name, 
+	employee.first_name
+FROM departments as department
+INNER JOIN dept_emp as designation ON
+department.dept_no = designation.dept_no
+INNER JOIN employees as employee ON
+designation.emp_no = employee.emp_no
+WHERE dept_name IN ('Sales', 'Development')
+ORDER BY emp_no;
 
 -- List the frequency counts, in descending order, of all the employee last names (that is, how many employees share each last name).
